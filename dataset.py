@@ -75,17 +75,12 @@ class CUB200(data.Dataset):
         return len(self.data)
 
     def download(self):
-        base = os.path.join(self.root, self.dirname)
-        if not os.path.exists(base):
-            os.makedirs(base)
-
-        tar_path = os.path.join(base, self.tarname)
-
+        tar_path = os.path.join(self.root, self.tarname)
         if check_integrity(tar_path, self.tgz_md5):
             print("Tar has been previously downloaded")
             return
 
-        download_url(self.url, base, self.tarname, self.tgz_md5)
+        download_url(self.url, self.root, self.tarname, self.tgz_md5)
 
         print("Extracting Files")
         import tarfile
