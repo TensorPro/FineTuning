@@ -84,8 +84,7 @@ class CUB200(data.Dataset):
 
         print("Extracting Files")
         import tarfile
-        base = os.path.join(self.root, self.dirname)
-        tar_path = os.path.join(base, self.tarname)
+        tar_path = os.path.join(self.root, self.tarname)
         cwd = os.getcwd()
         tar = tarfile.open(tar_path, "r:gz")
         os.chdir(base)
