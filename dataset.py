@@ -48,7 +48,7 @@ class CUB200(data.Dataset):
                                dtype=bytes).astype(str)[:, 1]
         nb_examples = nb_examples or len(filepaths)
         imgs = torch.zeros(nb_examples, 3, *target_size)
-        labs = torch.zeros(nb_examples)
+        labs = torch.zeros(nb_examples).long()
         img_base = os.path.join(self.base, 'images')
         for i, fp in enumerate(filepaths):
             if i >= nb_examples:
