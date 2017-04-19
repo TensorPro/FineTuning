@@ -88,7 +88,7 @@ class CUB200(data.Dataset):
         tar_path = os.path.join(self.root, self.tarname)
         cwd = os.getcwd()
         tar = tarfile.open(tar_path, "r:gz")
-        os.chdir(root)
+        os.chdir(self.root)
         tar.extractall()
         tar.close()
         os.chdir(cwd)
