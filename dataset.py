@@ -54,7 +54,8 @@ class CUB200(data.Dataset):
             if i >= nb_examples:
                 break
             img_path = os.path.join(img_base, fp)
-            img = misc.imresize(misc.imread(img_path), target_size + [3])
+            img = misc.imresize(misc.imread(img_path,mode='RGB'),
+                                target_size + [3])
             imgs[i] = to_tensor(img)
             labs[i] = int(fp[:3])
         self.data = imgs
@@ -79,15 +80,15 @@ class CUB200(data.Dataset):
         if check_integrity(tar_path, self.tgz_md5):
             print("Tar has been previously downloaded")
             return
-
-        download_url(self.url, self.root, self.tarname, self.tgz_md5)
+        else:
+            download_url(self.url, self.root, self.tarname, self.tgz_md5)
 
         print("Extracting Files")
         import tarfile
         tar_path = os.path.join(self.root, self.tarname)
         cwd = os.getcwd()
         tar = tarfile.open(tar_path, "r:gz")
-        os.chdir(base)
+        os.chdir(root)
         tar.extractall()
         tar.close()
         os.chdir(cwd)
