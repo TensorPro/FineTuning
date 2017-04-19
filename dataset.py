@@ -79,7 +79,6 @@ class CUB200(data.Dataset):
         tar_path = os.path.join(self.root, self.tarname)
         if check_integrity(tar_path, self.tgz_md5):
             print("Tar has been previously downloaded")
-            return
         else:
             download_url(self.url, self.root, self.tarname, self.tgz_md5)
 
